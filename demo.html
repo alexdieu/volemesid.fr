@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+
+<title>Vole mes ID Demo</title>
+
+</head>
+<body>
+
+<strong>Login</strong>
+<br>
+<form action="https://example.com/" method="post">
+utilisateur:
+<br>
+<input type="text" name="username">
+<br>
+mot de passe:
+<br>
+<input type="password" name="password">
+<br>
+<input type="submit" value="login">
+</form>
+
+<div style="width: 350px; margin-top:1em; background: #efefef;padding: 2px 1em;border:1px solid #ddd">
+<p>
+Testez avec un nom et mot de passe débile(genre HOMERSIMPSON mdp : TARATATA)
+
+<p>
+Cette démo contient un formulaire de connexion sur une page non HTTPS.
+Même si le formulaire est envoyé sur une page sécurisée (HTTPS),
+vos informations de connexion peuvent être facilement volées.
+<p>
+plus d'info sur la page précédente ^^ <a href="index.html"></a>
+</div>
+
+<script type="text/javascript" src="stealmylogin.js"></script>
+
+<script type="text/javascript"> 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1155620-6']);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+</body>
+
+</html>
+
